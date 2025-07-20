@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frontend-Backend Connection Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .result { margin: 10px 0; padding: 10px; border-radius: 5px; }
+        .success { background-color: #d4edda; color: #155724; }
+        .error { background-color: #f8d7da; color: #721c24; }
+        button { padding: 10px 15px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Frontend-Backend Connection Test</h1>
+    
+    <h2>Test Connection</h2>
+    <button onclick="testHealth()">Test Backend Health</button>
+    <button onclick="testRegistration()">Test Registration</button>
+    <button onclick="testLogin()">Test Login</button>
+    
+    <div id="results"></div>
+    
+    <h2>🔑 Test Account</h2>
+    <p><strong>Email:</strong> demo@selfcare.ai</p>
+    <p><strong>Password:</strong> demo123456</p>
+    
+    <script>
+        const API_URL = 'http://localhost:8000/api/v1';
+        const resultsDiv = document.getElementById('results');
+        
+        function addResult(message, isSuccess = true) {
+            const div = document.createElement('div');
+            div.className = `result ${isSuccess ? 'success' : 'error'}`;
+            div.textContent = message;
+            resultsDiv.appendChild(div);
+        }
+        
+        async function testHealth() {
+            try {
+                const response = await fetch('http://localhost:8000/health');
+                const data = await response.json();
+                addResult(`✅ Backend Health: ${data.status} (v${data.version})`);
+            } catch (error) {
+                addResult(`❌ Backend Health Failed: ${error.message}`, false);
+            }
+        }
+        
+        async function testRegistration() {
+            try {
+                const response = await fetch(`${API_URL}/auth/register`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        email: `test${Date.now()}@example.com`,
+                        password: 'testpassword123',
+                        name: 'Test User'
+                    })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult(`✅ Registration successful: ${data.name} (${data.email})`);
+                } else {
+                    const error = await response.json();
+                    addResult(`❌ Registration failed: ${error.detail}`, false);
+                }
+            } catch (error) {
+                addResult(`❌ Registration network error: ${error.message}`, false);
+            }
+        }
+        
+        async function testLogin() {
+            try {
+                const formData = new FormData();
+                formData.append('username', 'demo@selfcare.ai');
+                formData.append('password', 'demo123456');
+                
+                const response = await fetch(`${API_URL}/auth/login`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    addResult(`✅ Login successful: Token received (${data.token_type})`);
+                } else {
+                    const error = await response.json();
+                    addResult(`❌ Login failed: ${error.detail}`, false);
+                }
+            } catch (error) {
+                addResult(`❌ Login network error: ${error.message}`, false);
+            }
+        }
+    </script>
+</body>
+</html>
