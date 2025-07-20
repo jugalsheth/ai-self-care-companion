@@ -167,3 +167,51 @@ class TokenData(BaseModel):
     """Token data model"""
     user_id: Optional[int] = None
     email: Optional[str] = None
+
+
+# Mood Tracking Models
+class MoodCreate(BaseModel):
+    """Mood entry creation model"""
+    mood: str = Field(..., description="Mood description")
+    intensity: Optional[int] = Field(None, ge=1, le=10, description="Mood intensity (1-10)")
+    context: Optional[str] = Field(None, description="Context or situation")
+    triggers: Optional[List[str]] = Field(None, description="List of triggers")
+    created_at: Optional[datetime] = Field(None, description="Entry timestamp")
+    
+    @validator('mood')
+    def validate_mood(cls, v):
+        if not v or len(v.strip()) == 0:
+            raise ValueError('Mood cannot be empty')
+        return v.strip()
+
+
+class MoodUpdate(BaseModel):
+    """Mood entry update model"""
+    mood: Optional[str] = Field(None, description="Mood description")
+    intensity: Optional[int] = Field(None, ge=1, le=10, description="Mood intensity (1-10)")
+    context: Optional[str] = Field(None, description="Context or situation")
+    triggers: Optional[List[str]] = Field(None, description="List of triggers")
+
+
+class MoodResponse(BaseModel):
+    """Mood entry response model"""
+    id: int
+    user_id: int
+    mood: str
+    intensity: Optional[int]
+    context: Optional[str]
+    triggers: Optional[List[str]]
+    created_at: datetime
+    
+    class Config:
+        from_attributes = True
+
+
+class MoodAnalyticsResponse(BaseModel):
+    """Mood analytics response model"""
+    total_entries: int
+    average_intensity: float
+    most_common_mood: Optional[str]
+    mood_distribution: dict
+    daily_averages: dict
+    trends: dict

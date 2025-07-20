@@ -1,0 +1,93 @@
+{
+	"meta": {
+		"generatedAt": "2025-07-20T01:22:13.248Z",
+		"tasksAnalyzed": 10,
+		"totalTasks": 10,
+		"analysisCount": 10,
+		"thresholdScore": 5,
+		"projectName": "Taskmaster",
+		"usedResearch": false
+	},
+	"complexityAnalysis": [
+		{
+			"taskId": 1,
+			"taskTitle": "Setup Backend Foundation with FastAPI and Database",
+			"complexityScore": 7,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Break down backend foundation setup into: project structure creation, FastAPI app initialization, database configuration (PostgreSQL/SQLite), SQLAlchemy models implementation, and environment/CORS setup",
+			"reasoning": "High complexity due to multiple technologies and infrastructure setup. Requires database design, FastAPI configuration, and proper project architecture."
+		},
+		{
+			"taskId": 2,
+			"taskTitle": "Implement User Authentication System",
+			"complexityScore": 8,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Divide authentication into: user model creation, password hashing with bcrypt, JWT token implementation, registration endpoint, login endpoint, and authentication middleware with password reset",
+			"reasoning": "High complexity involving security concerns, multiple authentication flows, and proper token management. Critical for application security."
+		},
+		{
+			"taskId": 3,
+			"taskTitle": "Setup Next.js Frontend Foundation",
+			"complexityScore": 6,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Split frontend foundation into: Next.js project initialization with TypeScript, Tailwind CSS and shadcn/ui setup, layout components and routing structure, and Framer Motion integration with responsive design",
+			"reasoning": "Moderate complexity with multiple frontend technologies. Requires careful setup of build tools and component architecture."
+		},
+		{
+			"taskId": 4,
+			"taskTitle": "Build Authentication UI and Context",
+			"complexityScore": 7,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Break down auth UI into: AuthContext creation with state management, registration form with validation, login form with validation, protected route wrapper implementation, and logout/session persistence functionality",
+			"reasoning": "High complexity due to state management, form validation, and integration with backend authentication. Requires careful UI/UX design."
+		},
+		{
+			"taskId": 5,
+			"taskTitle": "Implement Mood Tracking Backend API",
+			"complexityScore": 6,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Divide mood API into: mood model creation with database schema, CRUD endpoints implementation, pagination and filtering logic, and input validation with error handling",
+			"reasoning": "Moderate complexity involving database operations, API design, and data validation. Core functionality but straightforward implementation."
+		},
+		{
+			"taskId": 6,
+			"taskTitle": "Build Mood Logging Frontend Interface",
+			"complexityScore": 6,
+			"recommendedSubtasks": 4,
+			"expansionPrompt": "Split mood UI into: mood logging form with rating slider, mood history display component, date picker integration, and optimistic UI updates with animations",
+			"reasoning": "Moderate complexity requiring good UX design, form handling, and data visualization. Animation integration adds some complexity."
+		},
+		{
+			"taskId": 7,
+			"taskTitle": "Integrate OpenAI API for Mood Analysis",
+			"complexityScore": 7,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Break down AI integration into: OpenAI service setup and configuration, prompt engineering for mood analysis, rate limiting and error handling implementation, response storage and caching system, and therapeutic boundary safeguards",
+			"reasoning": "High complexity due to external API integration, prompt engineering, cost management, and ethical considerations for mental health context."
+		},
+		{
+			"taskId": 8,
+			"taskTitle": "Implement Self-Care Routines Management",
+			"complexityScore": 7,
+			"recommendedSubtasks": 5,
+			"expansionPrompt": "Divide routines into: routine model and database schema, CRUD API endpoints for routine management, frontend routine creation and editing forms, routine tracking and completion interface, and template system with scheduling",
+			"reasoning": "High complexity involving full-stack development, scheduling logic, and complex UI for routine management. Multiple interrelated components."
+		},
+		{
+			"taskId": 9,
+			"taskTitle": "Develop Analytics Dashboard with Data Visualization",
+			"complexityScore": 8,
+			"recommendedSubtasks": 6,
+			"expansionPrompt": "Break down analytics into: data aggregation API endpoints, chart library integration and setup, mood trend visualization components, routine consistency analytics, dashboard filtering and date range selection, and data export functionality",
+			"reasoning": "High complexity requiring data analysis, visualization libraries, complex queries, and interactive dashboard components. Performance considerations important."
+		},
+		{
+			"taskId": 10,
+			"taskTitle": "Deploy Application and Database Migration",
+			"complexityScore": 9,
+			"recommendedSubtasks": 7,
+			"expansionPrompt": "Divide deployment into: Vercel frontend deployment configuration, Railway backend deployment setup, Supabase PostgreSQL database configuration, database migration script development, environment variables and SSL setup, CI/CD pipeline configuration, and monitoring and performance setup",
+			"reasoning": "Highest complexity involving multiple platforms, database migration, infrastructure setup, and production considerations. Critical for application launch."
+		}
+	]
+}

@@ -1,0 +1,89 @@
+# PRD: AI Self-Care Companion
+
+## Overview
+The AI Self-Care Companion is a web application designed to help users improve their mental wellness through mood tracking, personalized routines, and AI-powered insights. It provides a modern, intuitive interface inspired by Apple's design language, making self-care an engaging and accessible experience.
+
+## Core Features
+1.  **User Authentication**: Secure user registration and login to protect personal data.
+2.  **Mood Tracking**: Allows users to log their daily mood with ratings and notes.
+3.  **AI-Powered Analysis**: Uses OpenAI's GPT-4o to provide empathetic and insightful feedback on mood entries.
+4.  **Personalized Routines**: Users can create and manage daily self-care routines.
+5.  **Analytics Dashboard**: Visualizes mood trends and routine consistency over time.
+6.  **Responsive Design**: Fully accessible on both desktop and mobile devices.
+
+## User Experience
+-   **User Persona**: Individuals looking to build self-awareness, manage stress, and develop healthy habits.
+-   **User Flow**:
+    1.  User registers or logs in.
+    2.  Lands on the dashboard, greeted with a summary of their recent activity.
+    3.  Logs their current mood.
+    4.  Receives AI-generated feedback.
+    5.  Reviews and updates their daily routines.
+    6.  Views their progress on the analytics dashboard.
+-   **UI/UX**: Clean, minimalist design with a focus on clarity and ease of use. Interactive elements and smooth animations enhance the user experience.
+
+## Technical Architecture
+-   **Frontend**: Next.js, React, TypeScript, Tailwind CSS, shadcn/ui, Framer Motion.
+-   **Backend**: Python, FastAPI, SQLAlchemy (with PostgreSQL for production).
+-   **Database**: SQLite for local development, PostgreSQL (via Supabase) for production.
+-   **APIs**:
+    -   Internal REST API for frontend-backend communication.
+    -   Integration with OpenAI API for AI features.
+-   **Infrastructure**:
+    -   Frontend hosted on Vercel.
+    -   Backend hosted on Railway.
+
+## Development Roadmap
+### Phase 1: MVP (Minimum Viable Product)
+-   [x] User registration and login.
+-   [x] Basic mood tracking (rating and text entry).
+-   [x] Display mood history.
+-   [x] Basic routine creation and management.
+-   [x] Initial UI with Tailwind CSS.
+
+### Phase 2: AI Integration & Enhanced UI
+-   [x] Integrate OpenAI API for mood analysis.
+-   [x] Implement shadcn/ui for a polished component library.
+-   [x] Develop the analytics dashboard with basic charts.
+-   [x] Refine the UI to align with Apple's design aesthetic.
+
+### Phase 3: Deployment & Refinement
+-   [ ] Set up free-tier deployment on Vercel and Railway.
+-   [ ] Migrate database from SQLite to PostgreSQL (Supabase).
+-   [ ] Implement comprehensive error handling and logging.
+-   [ ] Conduct user testing and gather feedback.
+
+### Future Enhancements
+-   Push notifications for routine reminders.
+-   Gamification elements (streaks, achievements).
+-   Community features for sharing progress.
+-   Deeper personalization of AI insights.
+-   Integration with health data sources (Apple Health, Google Fit).
+
+## Logical Dependency Chain
+1.  **Backend Foundation**: Set up FastAPI, database models, and user authentication.
+2.  **Frontend Foundation**: Set up Next.js, basic layout, and `AuthContext`.
+3.  **Core Feature (Auth)**: Build registration/login forms and connect to the backend.
+4.  **Core Feature (Mood)**: Implement mood logging form and API endpoints.
+5.  **Core Feature (Routines)**: Implement routine creation and display.
+6.  **AI Integration**: Connect mood logging to the OpenAI service.
+7.  **UI Polish**: Refine components, add animations, and ensure responsiveness.
+8.  **Deployment**: Configure hosting platforms and deploy the application.
+
+## Risks and Mitigations
+-   **Risk**: OpenAI API costs could become significant with high usage.
+    -   **Mitigation**: Implement rate limiting and monitor API usage closely. Offer premium tiers for heavy users in the future.
+-   **Risk**: Data privacy and security of sensitive user data.
+    -   **Mitigation**: Use JWT for authentication, hash passwords, and follow security best practices. Ensure the database is secure.
+-   **Risk**: Scope creep with new feature ideas.
+    -   **Mitigation**: Stick to the phased roadmap and prioritize features based on user feedback and impact.
+-   **Risk**: Free tier limitations on hosting platforms.
+    -   **Mitigation**: Monitor usage and be prepared to upgrade to a paid plan if the app gains traction.
+
+## Appendix
+-   **Design Inspiration**: [Apple's Design Principles](https://developer.apple.com/design/human-interface-guidelines)
+-   **Component Library**: [shadcn/ui](https://ui.shadcn.com/)
+-   **Deployment Platforms**:
+    -   [Vercel](https://vercel.com)
+    -   [Railway](https://railway.app)
+    -   [Supabase](https://supabase.com) 

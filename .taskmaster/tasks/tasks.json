@@ -1,0 +1,693 @@
+{
+  "master": {
+    "tasks": [
+      {
+        "id": 1,
+        "title": "Setup Backend Foundation with FastAPI and Database",
+        "description": "Initialize FastAPI application with PostgreSQL database models, basic project structure, and environment configuration",
+        "details": "Create FastAPI app with SQLAlchemy models for users, moods, and routines. Set up database connection with PostgreSQL for production and SQLite for development. Configure environment variables for database URLs, API keys, and security settings. Implement basic CORS middleware and project structure with separate modules for models, routes, and services.",
+        "testStrategy": "Unit tests for database models, integration tests for database connections, and API endpoint smoke tests to ensure FastAPI is properly configured",
+        "priority": "high",
+        "dependencies": [],
+        "status": "completed",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create project structure and directory layout",
+            "description": "Set up backend project directory structure with organized modules for models, routes, services, and configuration",
+            "dependencies": [],
+            "details": "Create main project directory with subdirectories: app/ (main application code), app/models/ (SQLAlchemy models), app/routes/ (API endpoints), app/services/ (business logic), app/core/ (configuration), tests/ (test files), and requirements.txt for dependencies. Initialize __init__.py files for proper Python module structure.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Initialize FastAPI application with basic configuration",
+            "description": "Set up FastAPI app instance with basic middleware and configuration",
+            "dependencies": [],
+            "details": "Create main FastAPI application instance in app/main.py with basic configuration. Add CORS middleware for frontend integration, exception handlers for proper error responses, and basic health check endpoint. Configure app metadata including title, description, and version.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Configure database connection with PostgreSQL and SQLite support",
+            "description": "Set up database configuration supporting both PostgreSQL for production and SQLite for development",
+            "dependencies": [],
+            "details": "Create database configuration in app/core/database.py with SQLAlchemy engine setup. Implement connection string logic to use PostgreSQL for production and SQLite for development based on environment variables. Configure connection pooling, session management, and database URL validation.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement SQLAlchemy models for users, moods, and routines",
+            "description": "Create database models using SQLAlchemy ORM for core application entities",
+            "dependencies": [],
+            "details": "Define User model with fields for id, email, hashed_password, created_at, updated_at. Create Mood model with id, user_id (foreign key), rating (1-10), notes, timestamp. Implement Routine model with id, user_id, name, description, frequency. Add proper relationships between models and database constraints.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Setup environment configuration and CORS middleware",
+            "description": "Configure environment variables, CORS settings, and security configurations",
+            "dependencies": [],
+            "details": "Create .env file template and app/core/config.py for environment variable management. Configure CORS middleware with appropriate origins for frontend integration. Set up environment variables for database URLs, JWT secret keys, and API configuration. Implement settings validation and default values.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Implement User Authentication System",
+        "description": "Build secure user registration and login with JWT tokens and password hashing",
+        "details": "Create user registration and login endpoints using bcrypt for password hashing and JWT for session management. Implement middleware for token validation and user authentication. Create user model with email, hashed password, and profile fields. Add password reset functionality and email validation.",
+        "testStrategy": "Unit tests for password hashing, JWT token generation/validation, integration tests for registration/login flows, and security tests for authentication bypass attempts",
+        "priority": "high",
+        "dependencies": [
+          1
+        ],
+        "status": "completed",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create User Model and Database Schema",
+            "description": "Design and implement user model with email, password hash, profile fields, and database schema",
+            "dependencies": [],
+            "details": "Create user model with fields for email (unique), hashed_password, first_name, last_name, created_at, updated_at, is_active, and email_verified. Set up database migration and ensure proper indexing on email field for performance.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement Password Hashing with bcrypt",
+            "description": "Set up secure password hashing and verification using bcrypt library",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Install and configure bcrypt for password hashing with appropriate salt rounds (12+). Create utility functions for hash_password() and verify_password(). Ensure proper error handling for invalid passwords and timing attack prevention.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement JWT Token System",
+            "description": "Create JWT token generation, validation, and refresh functionality",
+            "dependencies": [
+              "2.1"
+            ],
+            "details": "Set up JWT with access tokens (15-30 min expiry) and refresh tokens (7 days). Create functions for generate_tokens(), verify_token(), and refresh_token(). Include user ID and essential claims in token payload. Implement proper secret key management.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Build User Registration Endpoint",
+            "description": "Create API endpoint for new user registration with validation",
+            "dependencies": [
+              "2.2",
+              "2.3"
+            ],
+            "details": "Implement POST /auth/register endpoint with email/password validation, duplicate email checking, password strength requirements, and automatic JWT token generation. Include proper error responses and input sanitization.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Build User Login Endpoint",
+            "description": "Create secure login endpoint with credential validation and token generation",
+            "dependencies": [
+              "2.2",
+              "2.3"
+            ],
+            "details": "Implement POST /auth/login endpoint with email/password verification, account status checking, and JWT token generation. Add rate limiting for failed attempts and proper error messaging without revealing user existence.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Create Authentication Middleware and Password Reset",
+            "description": "Implement JWT middleware for route protection and password reset functionality",
+            "dependencies": [
+              "2.3",
+              "2.4",
+              "2.5"
+            ],
+            "details": "Create authentication middleware to verify JWT tokens and extract user data. Implement password reset flow with secure token generation, email sending, and reset endpoint. Add logout functionality with token blacklisting if needed.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Setup Next.js Frontend Foundation",
+        "description": "Initialize Next.js application with TypeScript, Tailwind CSS, and basic project structure",
+        "details": "Create Next.js 14+ app with TypeScript configuration, Tailwind CSS setup, and shadcn/ui component library. Implement basic layout components, routing structure, and environment configuration for API endpoints. Set up Framer Motion for animations and create responsive design system following Apple's design principles.",
+        "testStrategy": "Component unit tests with Jest and React Testing Library, visual regression tests for responsive design, and accessibility tests using axe-core",
+        "priority": "high",
+        "dependencies": [],
+        "status": "completed",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Initialize Next.js project with TypeScript",
+            "description": "Set up Next.js 14+ application with TypeScript configuration and basic project structure",
+            "dependencies": [],
+            "details": "Create new Next.js project using create-next-app with TypeScript template. Configure tsconfig.json for optimal TypeScript settings. Set up basic folder structure with src/, components/, lib/, and types/ directories. Configure environment variables for API endpoints and initialize package.json with required dependencies.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Configure Tailwind CSS and shadcn/ui",
+            "description": "Set up Tailwind CSS styling framework and shadcn/ui component library",
+            "dependencies": [
+              "3.1"
+            ],
+            "details": "Install and configure Tailwind CSS with PostCSS and Autoprefixer. Set up shadcn/ui component library with proper theme configuration. Create custom design tokens following Apple's design principles. Configure Tailwind classes for responsive breakpoints and design system variables.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement layout components and routing structure",
+            "description": "Create basic layout components and set up Next.js app router structure",
+            "dependencies": [
+              "3.2"
+            ],
+            "details": "Build main layout components including Header, Navigation, and Footer using shadcn/ui components. Set up Next.js app router with proper page structure for authentication, dashboard, and mood tracking pages. Implement responsive navigation with mobile menu support and create page templates with consistent styling.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Integrate Framer Motion with responsive design",
+            "description": "Set up Framer Motion animations and ensure responsive design across all devices",
+            "dependencies": [
+              "3.3"
+            ],
+            "details": "Install and configure Framer Motion for page transitions and component animations. Create reusable animation variants for common UI interactions. Implement responsive design system with proper breakpoints for mobile, tablet, and desktop. Test layout components across different screen sizes and ensure accessibility standards compliance.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Build Authentication UI and Context",
+        "description": "Create registration and login forms with AuthContext for state management",
+        "details": "Implement registration and login forms using shadcn/ui components with form validation using react-hook-form and zod. Create AuthContext with React Context API for global authentication state management. Add protected route wrapper and automatic token refresh logic. Implement logout functionality and session persistence.",
+        "testStrategy": "Component tests for form validation, integration tests for authentication flow, and E2E tests for complete user registration and login journey",
+        "priority": "high",
+        "dependencies": [
+          2,
+          3
+        ],
+        "status": "completed",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create AuthContext with state management",
+            "description": "Implement React Context API for global authentication state with user data, login status, and token management",
+            "dependencies": [],
+            "details": "Create AuthContext provider with state for user object, isAuthenticated boolean, and JWT token. Implement context methods for login, logout, and token refresh. Add automatic token validation and refresh logic with localStorage persistence.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Build registration form with validation",
+            "description": "Create user registration form using shadcn/ui components with comprehensive form validation",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Implement registration form with email, password, and confirm password fields using react-hook-form and zod validation. Add real-time validation feedback, password strength indicator, and proper error handling. Style with shadcn/ui components following design system.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Build login form with validation",
+            "description": "Create user login form with email/password validation and authentication integration",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Implement login form with email and password fields using react-hook-form and zod validation. Add form submission handling that calls AuthContext login method, loading states, and error display. Include 'Remember me' option and forgot password link.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement protected route wrapper",
+            "description": "Create higher-order component or hook for protecting authenticated routes",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Build ProtectedRoute component that checks authentication status from AuthContext and redirects to login if not authenticated. Add loading states for token validation and implement automatic redirect after successful login.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Add logout and session persistence functionality",
+            "description": "Implement logout functionality and automatic session persistence across browser sessions",
+            "dependencies": [
+              "4.1"
+            ],
+            "details": "Add logout method to AuthContext that clears tokens and user data. Implement session persistence using localStorage/sessionStorage for 'Remember me' functionality. Add automatic session restoration on app load and token expiration handling.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "Implement Mood Tracking Backend API",
+        "description": "Create REST API endpoints for mood logging, retrieval, and management",
+        "details": "Build FastAPI endpoints for creating, reading, updating, and deleting mood entries. Create mood model with rating (1-10), notes, timestamp, and user association. Implement pagination for mood history retrieval and filtering by date ranges. Add input validation and proper error handling with informative error messages.",
+        "testStrategy": "API integration tests for all CRUD operations, validation tests for input constraints, and performance tests for mood history pagination",
+        "priority": "medium",
+        "dependencies": [
+          2
+        ],
+        "status": "completed",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create Mood Model and Database Schema",
+            "description": "Design and implement the mood data model with proper database schema definition",
+            "dependencies": [],
+            "details": "Create mood model with fields: id (primary key), user_id (foreign key), rating (1-10 integer), notes (text), timestamp (datetime), created_at, updated_at. Define database table schema with proper constraints, indexes for performance, and foreign key relationships to user table. Implement model validation at database level.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement CRUD API Endpoints",
+            "description": "Build FastAPI endpoints for mood entry creation, reading, updating, and deletion",
+            "dependencies": [
+              "5.1"
+            ],
+            "details": "Create POST /moods for mood creation, GET /moods/{id} for single mood retrieval, PUT /moods/{id} for mood updates, DELETE /moods/{id} for mood deletion. Include user authentication middleware and ensure users can only access their own mood entries. Implement proper HTTP status codes and response formats.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Add Pagination and Filtering Logic",
+            "description": "Implement mood history pagination and date-based filtering capabilities",
+            "dependencies": [
+              "5.2"
+            ],
+            "details": "Create GET /moods endpoint with query parameters for pagination (limit, offset) and filtering (start_date, end_date, rating_min, rating_max). Implement efficient database queries with proper indexing. Add metadata in responses for total count and pagination info. Support sorting by timestamp and rating.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement Input Validation and Error Handling",
+            "description": "Add comprehensive input validation and proper error handling with informative messages",
+            "dependencies": [
+              "5.2"
+            ],
+            "details": "Implement Pydantic models for request/response validation. Add validation for rating range (1-10), notes length limits, timestamp format. Create custom exception handlers for validation errors, not found errors, and authorization errors. Return consistent error response format with helpful error messages and appropriate HTTP status codes.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Build Mood Logging Frontend Interface",
+        "description": "Create intuitive mood logging form and mood history display with modern UI",
+        "details": "Implement mood logging form with rating slider, text area for notes, and submission handling. Create mood history component with cards/list view showing past entries. Add date picker for logging moods on specific dates and implement optimistic UI updates. Use Framer Motion for smooth animations and transitions.",
+        "testStrategy": "Component tests for form submission, integration tests for API data flow, and usability tests for mood logging user experience",
+        "priority": "medium",
+        "dependencies": [
+          4,
+          5
+        ],
+        "status": "completed",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create mood logging form with rating slider",
+            "description": "Build form component with mood rating slider (1-10), text area for notes, and submission handling",
+            "dependencies": [],
+            "details": "Implement controlled form with useState for mood value and notes. Create custom slider component or use library like react-slider. Add form validation and error handling. Include submit button with loading states and success feedback.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Build mood history display component",
+            "description": "Create component to display past mood entries in cards/list view with proper formatting",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Design mood history cards showing date, mood rating, and notes. Implement pagination or infinite scroll for large datasets. Add filtering and sorting options. Include empty states for when no mood data exists.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Integrate date picker for mood logging",
+            "description": "Add date picker functionality to allow logging moods for specific dates",
+            "dependencies": [
+              "6.1"
+            ],
+            "details": "Implement date picker component (react-datepicker or similar) for selecting mood entry dates. Handle timezone considerations and prevent future date selection. Update form submission to include selected date and validate date inputs.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Implement optimistic UI updates with animations",
+            "description": "Add Framer Motion animations and optimistic updates for smooth user experience",
+            "dependencies": [
+              "6.1",
+              "6.2",
+              "6.3"
+            ],
+            "details": "Integrate Framer Motion for form transitions, mood card animations, and page transitions. Implement optimistic updates that immediately show new mood entries before API confirmation. Add loading states, success animations, and error rollback functionality.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Integrate OpenAI API for Mood Analysis",
+        "description": "Connect mood entries to OpenAI GPT-4o for empathetic AI feedback and insights",
+        "details": "Create OpenAI service integration using GPT-4o model for analyzing mood entries and generating empathetic responses. Implement rate limiting and error handling for API calls. Create prompts that provide personalized insights while maintaining appropriate therapeutic boundaries. Store AI responses linked to mood entries and implement caching to reduce API costs.",
+        "testStrategy": "Unit tests for OpenAI service integration, mock tests for API responses, integration tests for mood analysis flow, and cost monitoring for API usage",
+        "priority": "medium",
+        "dependencies": [
+          5
+        ],
+        "status": "completed",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Setup OpenAI Service Configuration",
+            "description": "Create OpenAI service class with API configuration, environment variable setup, and model initialization for GPT-4o integration",
+            "dependencies": [],
+            "details": "Initialize OpenAI SDK with proper API key management, configure GPT-4o model settings, implement service singleton pattern, and set up environment variables for development and production environments",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Design Mood Analysis Prompts",
+            "description": "Create effective prompt templates for mood analysis that generate empathetic and therapeutic responses",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Develop prompt engineering strategies for mood analysis, create templates for different mood types, implement context-aware prompts that consider user history, and ensure responses maintain appropriate therapeutic boundaries",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Implement Rate Limiting and Error Handling",
+            "description": "Add comprehensive rate limiting, retry logic, and error handling for OpenAI API calls",
+            "dependencies": [
+              "7.1"
+            ],
+            "details": "Implement request rate limiting to prevent API quota exhaustion, add exponential backoff retry logic for failed requests, create error handling for various API failure scenarios, and implement fallback responses when API is unavailable",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Build Response Storage and Caching System",
+            "description": "Create database schema and caching mechanism for storing and retrieving AI-generated mood analysis responses",
+            "dependencies": [
+              "7.2"
+            ],
+            "details": "Design database schema for storing AI responses linked to mood entries, implement Redis or in-memory caching for frequently accessed responses, create TTL policies for cache invalidation, and optimize database queries for response retrieval",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement Therapeutic Boundary Safeguards",
+            "description": "Add safety measures and content filtering to ensure AI responses maintain appropriate therapeutic boundaries",
+            "dependencies": [
+              "7.2",
+              "7.4"
+            ],
+            "details": "Implement content filtering for inappropriate responses, add disclaimer mechanisms for AI-generated advice, create escalation triggers for concerning mood patterns, and ensure compliance with mental health guidance standards",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 8,
+        "title": "Implement Self-Care Routines Management",
+        "description": "Build routine creation, editing, and tracking functionality with backend and frontend",
+        "details": "Create routine model with title, description, frequency, and completion tracking. Implement CRUD API endpoints for routine management. Build frontend components for routine creation form, routine list display, and completion tracking interface. Add routine templates and scheduling functionality with reminder capabilities.",
+        "testStrategy": "API tests for routine CRUD operations, component tests for routine management UI, and integration tests for routine completion tracking",
+        "priority": "medium",
+        "dependencies": [
+          4
+        ],
+        "status": "completed",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create routine model and database schema",
+            "description": "Design and implement the routine data model with database schema for storing routine information",
+            "dependencies": [],
+            "details": "Create routine model with fields: id, user_id, title, description, frequency (daily/weekly/monthly), days_of_week, time_of_day, is_active, created_at, updated_at. Implement database migration and setup relationships with user model. Add completion tracking table for routine instances.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Implement CRUD API endpoints for routine management",
+            "description": "Build FastAPI endpoints for creating, reading, updating, and deleting routines",
+            "dependencies": [
+              "8.1"
+            ],
+            "details": "Create REST API endpoints: POST /routines (create), GET /routines (list user's routines), GET /routines/{id} (get specific routine), PUT /routines/{id} (update), DELETE /routines/{id} (delete). Add input validation, error handling, and user authorization checks. Include pagination and filtering options.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Build frontend routine creation and editing forms",
+            "description": "Create user interfaces for adding and modifying routines with form validation",
+            "dependencies": [
+              "8.2"
+            ],
+            "details": "Implement routine creation form with fields for title, description, frequency selection, time picker, and days of week selector. Build routine editing modal/page with pre-populated data. Add form validation using react-hook-form and zod. Include rich text editor for routine descriptions and category selection.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop routine tracking and completion interface",
+            "description": "Build UI components for viewing routines and marking them as complete",
+            "dependencies": [
+              "8.2"
+            ],
+            "details": "Create routine dashboard showing today's routines, completion status, and streak tracking. Implement completion buttons/checkboxes with optimistic updates. Build routine history view with calendar integration and progress statistics. Add visual indicators for routine streaks and completion rates.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement template system with scheduling functionality",
+            "description": "Create routine templates and automated scheduling with reminder capabilities",
+            "dependencies": [
+              "8.3",
+              "8.4"
+            ],
+            "details": "Build routine template library with pre-defined self-care routines (meditation, exercise, skincare, etc.). Implement scheduling engine that generates routine instances based on frequency settings. Add notification system for routine reminders and integrate with browser notifications API. Create template customization options.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Develop Analytics Dashboard with Data Visualization",
+        "description": "Create comprehensive analytics dashboard showing mood trends and routine consistency",
+        "details": "Implement analytics API endpoints for aggregating mood data and routine completion statistics. Create dashboard components using chart libraries (Chart.js or Recharts) to visualize mood trends over time, routine consistency, and progress insights. Add filtering options by date ranges and export functionality for personal data.",
+        "testStrategy": "Unit tests for analytics calculations, component tests for chart rendering, and integration tests for dashboard data accuracy",
+        "priority": "medium",
+        "dependencies": [
+          6,
+          8
+        ],
+        "status": "completed",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Create data aggregation API endpoints",
+            "description": "Implement FastAPI endpoints for aggregating mood data and routine completion statistics with efficient database queries",
+            "dependencies": [],
+            "details": "Build analytics endpoints that aggregate mood trends over time periods, calculate routine consistency percentages, and provide summary statistics. Implement efficient SQL queries with proper indexing for performance. Include endpoints for mood averages by day/week/month and routine completion rates.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Integrate chart library and setup configuration",
+            "description": "Install and configure chart visualization library (Chart.js or Recharts) with TypeScript support and theme integration",
+            "dependencies": [],
+            "details": "Choose and install appropriate charting library, configure with project's design system and dark/light theme support. Set up chart components with proper TypeScript types and responsive design. Create reusable chart wrapper components for consistent styling.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Build mood trend visualization components",
+            "description": "Create interactive chart components for displaying mood trends over time with multiple view options",
+            "dependencies": [
+              "9.1",
+              "9.2"
+            ],
+            "details": "Implement line charts for mood trends over time, bar charts for mood distribution, and heatmap calendars for daily mood visualization. Add interactive features like hover tooltips, clickable data points, and zoom capabilities. Support multiple time range views (week, month, year).",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop routine consistency analytics",
+            "description": "Create visualization components for routine completion rates and consistency tracking",
+            "dependencies": [
+              "9.1",
+              "9.2"
+            ],
+            "details": "Build charts showing routine completion percentages over time, streak tracking visualizations, and routine performance comparisons. Implement progress bars, completion calendars, and trend indicators. Add drill-down capabilities to view individual routine details.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Implement dashboard filtering and date range selection",
+            "description": "Create interactive controls for filtering analytics data by date ranges and other criteria",
+            "dependencies": [
+              "9.3",
+              "9.4"
+            ],
+            "details": "Build date range picker components with preset options (last 7 days, month, quarter, year). Implement filtering controls for specific moods, routines, or user-defined criteria. Add URL state management for shareable dashboard views and ensure filter state persistence.",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Add data export functionality",
+            "description": "Implement export features for analytics data in multiple formats (CSV, PDF, JSON)",
+            "dependencies": [
+              "9.5"
+            ],
+            "details": "Create export functionality allowing users to download their analytics data in various formats. Implement CSV export for raw data, PDF export for formatted reports with charts, and JSON export for data portability. Add export progress indicators and file download handling.",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "title": "Deploy Application and Database Migration",
+        "description": "Configure production deployment on Vercel and Railway with PostgreSQL database setup",
+        "details": "Set up production deployment with frontend on Vercel and backend on Railway. Configure Supabase PostgreSQL database for production with proper connection pooling and security settings. Implement database migration from SQLite to PostgreSQL with data preservation. Set up environment variables, SSL certificates, and monitoring for both platforms. Configure CI/CD pipelines for automated deployments.",
+        "testStrategy": "Deployment verification tests, database migration validation, production environment smoke tests, and performance monitoring setup",
+        "priority": "high",
+        "dependencies": [
+          7,
+          9
+        ],
+        "status": "pending",
+        "subtasks": [
+          {
+            "id": 1,
+            "title": "Configure Vercel Frontend Deployment",
+            "description": "Set up Vercel project configuration for Next.js application deployment with custom domain and build settings",
+            "dependencies": [],
+            "details": "Create Vercel project, configure build settings for Next.js app, set up custom domain if needed, configure preview deployments, and ensure proper routing for SPA behavior",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 2,
+            "title": "Setup Railway Backend Deployment",
+            "description": "Configure Railway service for FastAPI backend deployment with proper resource allocation and networking",
+            "dependencies": [],
+            "details": "Create Railway project, configure Dockerfile for FastAPI app, set up service scaling and resource limits, configure health checks and networking settings",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 3,
+            "title": "Configure Supabase PostgreSQL Database",
+            "description": "Set up production PostgreSQL database on Supabase with connection pooling and security configurations",
+            "dependencies": [],
+            "details": "Create Supabase project, configure PostgreSQL database, set up connection pooling, configure Row Level Security (RLS), create database users and roles, and set up SSL connections",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 4,
+            "title": "Develop Database Migration Scripts",
+            "description": "Create migration scripts to transfer data from SQLite development database to PostgreSQL production",
+            "dependencies": [
+              "10.3"
+            ],
+            "details": "Write migration scripts using Alembic, create data export/import utilities, implement schema transformation logic, add data validation and rollback capabilities",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 5,
+            "title": "Configure Environment Variables and SSL",
+            "description": "Set up production environment variables and SSL certificates for secure communication",
+            "dependencies": [
+              "10.1",
+              "10.2",
+              "10.3"
+            ],
+            "details": "Configure environment variables for both Vercel and Railway, set up SSL certificates, configure CORS for production domains, and ensure secure API communication between frontend and backend",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 6,
+            "title": "Setup CI/CD Pipeline Configuration",
+            "description": "Configure automated deployment pipelines for continuous integration and deployment",
+            "dependencies": [
+              "10.1",
+              "10.2"
+            ],
+            "details": "Set up GitHub Actions workflows for automated testing and deployment, configure deployment triggers, implement rollback strategies, and set up branch protection rules",
+            "status": "pending",
+            "testStrategy": ""
+          },
+          {
+            "id": 7,
+            "title": "Implement Monitoring and Performance Setup",
+            "description": "Configure monitoring, logging, and performance tracking for production environment",
+            "dependencies": [
+              "10.5",
+              "10.6"
+            ],
+            "details": "Set up application monitoring with error tracking, implement performance monitoring and analytics, configure log aggregation, set up alerts for critical issues, and create health check endpoints",
+            "status": "pending",
+            "testStrategy": ""
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "created": "2025-07-20T01:16:26.453Z",
+      "updated": "2025-07-20T01:16:26.453Z",
+      "description": "Tasks for master context"
+    }
+  }
+}

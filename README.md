@@ -106,6 +106,30 @@ The API will be available at `http://localhost:8000`
 
 The application will be available at `http://localhost:3000`
 
+## 🌐 Deploy to Production
+
+### Free Deployment Options
+This app can be deployed for free using:
+- **Frontend**: Vercel (Next.js hosting)
+- **Backend**: Railway (FastAPI hosting)
+- **Database**: Supabase (PostgreSQL)
+
+### Quick Deployment Steps
+1. **Fork/Clone this repository**
+2. **Follow the detailed deployment guide**: [DEPLOYMENT_GUIDE.md](./DEPLOYMENT_GUIDE.md)
+3. **Set up environment variables** in your deployment platforms
+4. **Deploy and share your app!**
+
+### Environment Variables Required
+**Backend (.env):**
+- `OPENAI_API_KEY` - Your OpenAI API key
+- `JWT_SECRET_KEY` - Secret key for JWT tokens
+- `DATABASE_URL` - Database connection string
+- `ALLOWED_ORIGINS` - CORS origins (your frontend URL)
+
+**Frontend (.env.local):**
+- `NEXT_PUBLIC_API_URL` - Your backend API URL
+
 ## 📁 Project Structure
 
 ```
