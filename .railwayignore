@@ -3,4 +3,6 @@
 !backend/
 !backend/**
 !railway.toml
-!railway.json 
+!railway.json
+!nixpacks.toml
+!start.sh 
