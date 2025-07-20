@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "cd frontend && npm run dev",
     "start": "cd frontend && npm start",
-    "vercel-build": "cd frontend && npm install && ./node_modules/.bin/next build"
+    "vercel-build": "cd frontend && npm install && npm run vercel-build"
   },
   "dependencies": {
     "next": "15.4.1",
