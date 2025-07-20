@@ -4,5 +4,5 @@
 !backend/**
 !railway.toml
 !railway.json
-!nixpacks.toml
-!start.sh 
+!Dockerfile
+!requirements.txt 
