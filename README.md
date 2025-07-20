@@ -312,4 +312,4 @@ For support, please open an issue in the GitHub repository or contact the develo
 
 - OpenAI for providing the GPT-4 API
 - The FastAPI and Next.js communities for excellent frameworks
-- All contributors to the open-source libraries used in this project
+- All contributors to the open-source libraries used in this project# Trigger new deployment
