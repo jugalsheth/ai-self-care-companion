@@ -1,5 +1,6 @@
-# Ignore everything except backend
+# Ignore everything except backend and Railway config
 *
 !backend/
 !backend/**
+!railway.toml
 !railway.json 
